@@ -1,5 +1,6 @@
 package com.example.friendapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     EditText ed1,ed2,ed3,ed4;
-    AppCompatButton b1;
+    AppCompatButton b1,b2;
     String apiUrl ="https://friendsapi-re5a.onrender.com/adddata";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,16 @@ public class MainActivity extends AppCompatActivity {
         ed3 = (EditText) findViewById(R.id.fnickname);
         ed4 = (EditText) findViewById(R.id.des);
         b1 = (AppCompatButton) findViewById(R.id.sub);
+        b2 = (AppCompatButton) findViewById(R.id.viewbtn);
 
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(), Viewfrnds.class);
+                startActivity(i);
+            }
+        });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,12 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //json obj request creation
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+
                         Request.Method.POST,
                         apiUrl,
                         friend,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                ed1.setText("");
+                                ed2.setText("");
+                                ed3.setText("");
+                                ed4.setText("");
                                 Toast.makeText(getApplicationContext(), "successfully added", Toast.LENGTH_LONG).show();
                             }
                         },

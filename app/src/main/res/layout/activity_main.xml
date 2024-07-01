@@ -51,6 +51,13 @@
         android:text="Submit"
         android:id="@+id/sub"
         android:textColor="#101313"
+        android:padding="20px"
         android:background="#BDBFC8"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewbtn"
+        android:padding="20px"
+        android:text="VIEW"/>
 
 </LinearLayout>
